@@ -32,21 +32,6 @@ async def main(client: Client, message: Message):
         await message.edit(
             text=Config.HELP_TEXT,
             parse_mode="Markdown", disable_web_page_preview=True)
-    elif (message.text in ["!restart", "!stop"]) and (message.from_user.id == (await client.get_me()).id):
-        if Config.HEROKU_APP is None:
-            await message.edit(
-                text="Restarting Userbot ...",
-                parse_mode="Markdown",
-                disable_web_page_preview=True
-            )
-            # https://stackoverflow.com/a/57032597/15215201
-            os.execl(sys.executable, sys.executable, *sys.argv)
-        else:
-            await message.edit(
-                text="Restarting Heroku Dyno ..."
-            )
-            Config.HEROKU_APP.restart()
-            time.sleep(30)
     elif (message.text == "!kang") and (message.from_user.id == (await client.get_me()).id):
         if len(Config.FORWARD_FROM_CHAT_ID) > 1:
             await message.edit(
