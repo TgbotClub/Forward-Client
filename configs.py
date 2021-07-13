@@ -1,7 +1,6 @@
 # (c) @AbirHasan2005
 
 import os
-import heroku3
 
 
 class Config(object):
@@ -24,10 +23,6 @@ class Config(object):
     FORWARD_AS_COPY = bool(os.environ.get("FORWARD_AS_COPY", True))
     # Sleep Time while Kang
     SLEEP_TIME = int(os.environ.get("SLEEP_TIME", 10))
-    # Heroku Management
-    HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY")
-    HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME")
-    HEROKU_APP = heroku3.from_key(HEROKU_API_KEY).apps()[HEROKU_APP_NAME] if HEROKU_API_KEY and HEROKU_APP_NAME else None
     # Message Texts
     HELP_TEXT = """
 This UserBot can forward messages from any Chat to any other Chat also you can kang all messages from one Chat to another Chat.
